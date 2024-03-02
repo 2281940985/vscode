@@ -12,5 +12,5 @@ int main()
         //输出0-100的随机数
     };
     system("pause");
-    return 0;
+   // return 0;
 }
