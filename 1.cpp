@@ -2,11 +2,13 @@
 #include <limits>
  
 using namespace std;  
-int count = 10;
+float  count = 10;
+double dou = 23;
   
 int main()  
 { 
-    std :: cout << count << std :: endl;
+    std :: cout << sizeof(count) << std :: endl;
+    std :: cout << sizeof(int) << std :: endl;
     system("pause");
     return 0;  
 }
