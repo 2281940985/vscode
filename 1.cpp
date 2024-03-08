@@ -1,6 +1,6 @@
 #include<iostream>  
 #include <limits>
- 
+
 using namespace std;  
 float  count = 10;
 double dou = 23;
