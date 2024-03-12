@@ -9,7 +9,7 @@ public:
             for (int j = i-1; j > 0; --j){
                 if(nums[i] - nums[j] == diff){
                     for (int k =i-2; k >= 0; --k){
-                        if((nums[i] - nums[j]) == diff && (nums[j] - nums[k] == diff)) {
+                        if((nums[j] - nums[k]) == diff ) {
                         ret++;
                 }
                     }
