@@ -28,6 +28,8 @@ public:
     void Print();
     ListNode* Find(eleType value);
     ListNode* Get(int i);
+    eleType sum();//求链表中所有元素的和
+    int StepCount();
 
 };
 void LinkedList :: Insert(int i, eleType value){ //因为Insert是LinkedList成员函数 ，可以访问LinkedList
@@ -101,27 +103,48 @@ void LinkedList :: Print(){
         //cout << endl;   
     }
      
+}
+eleType LinkedList :: sum()
+{
+    eleType sum = 0;
+    ListNode* curr = head;
+    for (int i = 0; i < size; ++i)
+    {
+        sum+=curr->data;
+        curr = curr->next;
+        
+    }
+    return sum;
 } 
-
-int main(){
-    LinkedList list;
-    list.Insert(0,10);
-    list.Insert(1,20);
-    list.Insert(2,30);
-    list.Insert(3,40);
-    list.Insert(4,50);
-    list.Print();
-    list.Delete(1);
-    cout << endl;
-    list.Print();
-    list.Updata(2,60);
-    cout << endl;
-    list.Print();
-    cout<<endl;
-    ListNode* tmp = list.Find(30);
-    cout << tmp ->data << endl;
-    cout << list.Get(3) ->data << endl;
-
+int LinkedList :: StepCount()
+{
+    ListNode* curr = head;
+    int ret = 0;
+    while (curr)
+    {
+        ret += (curr -> data +1)/2;
+        curr = curr ->next;
+    }
+    return ret;
+    
+}
+int main()
+{
+    int n;
+    while (cin >> n && n)
+    {
+        LinkedList l;
+        for (int i = 0; i < n; ++i)
+        {
+            int x;
+            cin >> x;
+            l.Insert(i,x);
+        }
+        cout << l.StepCount() << endl;
+        
+    }
+    
     system("pause");
-    return 0; 
+    return 0;
+
 }
