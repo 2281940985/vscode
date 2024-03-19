@@ -26,6 +26,51 @@ public:
     int Getsize();
 
 };
+class stack_queue
+{
+private:
+    Stack s1;
+    Stack s2;
+public:
+    stack_queue(){}
+    void push(Eletype x)
+    {
+        s1.Push(x);
+    }
+    Eletype pop()
+    {
+        if (s2.Getsize() == 0)
+        {
+            while (s1.Getsize())
+            {
+                s2.Push(s1.Pop());
+            }
+            
+        }
+        return s2.Pop();
+        
+    }
+    Eletype peek()//»ñÈ¡Õ»¶¥ÔªËØ
+    {
+        if (s2.Getsize() == 0)
+        {
+            while (s1.Getsize())
+            {
+                s2.Push(s1.Pop());
+            }
+            
+        }
+        return s2.Top();
+    }
+    bool empty()
+    {
+        return s1.Getsize() && s2.Getsize();
+    }
+    ~stack_queue(){}
+};
+
+
+
 void Stack ::Resize()
 {
     int NewCapacity = Capacity*2;
@@ -53,9 +98,8 @@ Eletype Stack::Pop()
     {
         cout << "Stack is empty" << endl;
     }
-    
     return Data[--Size];
-} 
+}
 Eletype Stack :: Top()
 {
    if (Size == 0)
@@ -70,17 +114,17 @@ int Stack ::Getsize()
 }
 int main()
 {
-    Stack st;
-    st.Push(4);
-    st.Push(7);
-    st.Push(13);
-    cout << st.Top() << endl;
-    st.Push(17);
-    cout << st.Top() << endl;
-    st.Pop();
-    st.Pop();
-    cout << st.Top() << endl;
-    cout << st.Getsize() << endl;
+    stack_queue sq;
+    sq.push(3);
+    sq.push(4);
+    sq.push(5);
+    sq.push(6);
+    cout << sq.empty() << endl;
+    cout << sq.peek() << endl;
+    cout << sq.pop() << endl;
+
+
+
     system("pause");
     return 0;
 }
