@@ -123,8 +123,6 @@ int main()
     cout << sq.peek() << endl;
     cout << sq.pop() << endl;
 
-
-
     system("pause");
     return 0;
 }
