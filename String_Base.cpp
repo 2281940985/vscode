@@ -20,7 +20,7 @@ public:
     bool operator!= (const String& s);
     String copy() const;
     String operator+(const String& s);
-    friend ostream& operator<< (ostream& out, const String s);
+    friend ostream& operator<< (ostream& out, const String& s);
 
 };
 String :: String()
@@ -76,7 +76,7 @@ bool String :: operator!= (const String& s)
 }
 String String :: copy() const
 {
-    String s = *this;
+    String s = *this;//执行该语句，就会执行拷贝构造函数
     return s;
 }
 String String ::operator+(const String& s)
@@ -88,7 +88,7 @@ String String ::operator+(const String& s)
     strcat(result.Str, s.Str);
     return result;
 }
-ostream& operator<< (ostream& out, const String s)
+ostream& operator<< (ostream& out, const String& s)//记住一定要传引用&，否则每次用重载符<<时，都会调用拷贝构造函数复制一个副本
 {
     out << s.Str;
     return out;
@@ -97,7 +97,7 @@ int main()
 {
     String s("12345d");
     cout << s << endl;
-    cout << s+"445" << endl;
+    cout << s+"445" << endl;//执行完后会执行两次析构函数，释放"445"和"12345d445"的内存
     cout << s[5] << endl;
     cout << (s == "12345d") << endl;
     cout << (s != "12345d") << endl;
