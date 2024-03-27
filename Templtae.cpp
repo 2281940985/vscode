@@ -8,7 +8,7 @@ void Print(T value)
 }
 
 template< typename T, int N>//模板指定了两个参数，类型T、整数N，T用来指定m_Arry的类型：int,float,string ...
-class Arry                 //N用来指定数组的大小，
+class Arry                 //N用来指定数组的大小，定义的时候要指定模板类型
 {
 private:
     T m_Arry[N];
