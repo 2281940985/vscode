@@ -19,10 +19,10 @@ private:
     TreeNode<T>* Root;
     int NodeSize;
     TreeNode<T>* Create(T a[], int size, int NodeId, T nullnode);
-    void Visit(TreeNode<T>* node);
-    void PreOrder(TreeNode<T>* node);
-    void InOrder(TreeNode<T>* node);
-    void PostOrder(TreeNode<T>* node);
+    void Visit(TreeNode<T>* node);//访问节点的内容
+    void PreOrder(TreeNode<T>* node);//前序遍历
+    void InOrder(TreeNode<T>* node);//中序遍历
+    void PostOrder(TreeNode<T>* node);//后序遍历
 
 public:
     Tree() : Nodes(nullptr), Root(nullptr), NodeSize(0) {}
@@ -93,16 +93,16 @@ TreeNode<T>* Tree<T> ::Create(T a[], int size, int NodeId, T nullnode)
     {
         return NULL;
     }
-    TreeNode<T>* NowNode =  GetTreeNode(NodeId);
+    TreeNode<T>* NowNode =  GetTreeNode(NodeId);//浅拷贝，两个指针指向同一块区域
     NowNode->Val = a[NodeId];
-    NowNode->Left = Create(a, size, 2 * NodeId, nullnode);
+    NowNode->Left = Create(a, size, 2 * NodeId, nullnode);//相当于每次只传进去一个节点,然后在根据数学关系传入左节点和右节点
     NowNode->Right = Create(a, size, 2 * NodeId + 1, nullnode);
     return NowNode;
 }
 template<typename T>
 void Tree<T> ::CreateTree(T a[], int size, T nullnode)
 {
-    Root = Create(a, size, 1, nullnode);
+    Root = Create(a, size, 1, nullnode);//如果传入0，则为空树，不满足数学关系，树中左节点代号一定是父节点的2倍。
 }
 template <typename T>
 void Tree<T> ::InOrderTraversal()
@@ -124,7 +124,7 @@ int main()
 {
     const char nullnode = '-';
     char a[15] = {nullnode, 'a', 'b', 'c', 'd', nullnode, 'e', 'f', 'g',
-    'h', nullnode, nullnode, nullnode, nullnode, 'i'};
+    'h', nullnode, nullnode, nullnode, nullnode, 'i'};//数组索引为0一定为空，不为树中的节点，下标为1才为根节点
 
     Tree<char> T(15);
     T.CreateTree(a, 15, nullnode);
